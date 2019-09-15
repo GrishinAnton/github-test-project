@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import "./style.sass"
-export default {
-  
-}
+import "./style.sass";
+export default {};
 </script>

@@ -2,18 +2,30 @@
   <div class="cards-list">
     <Loading v-if="loadingData" />
     <template v-else>
-      <p v-if="getRequestError">Произошла ошибка при загрузке данных.</p>
-      <Card v-else :item="item" :tooltipMessage="tooltipMessage" v-for="item in setDataListWithSort" :key="item.id"/>
-    </template>   
+      <p v-if="getRequestError">
+        Произошла ошибка при загрузке данных.
+      </p>
+      <Card
+        v-for="item in setDataListWithSort"
+        v-else
+        :key="item.id"
+        :item="item"
+        :tooltip-message="tooltipMessage"
+      />
+    </template>
   </div>
 </template>
 
 <script>
-import Card from './Card/Card'
-import Loading  from "../../elements/Loading/Loading"
+import Card from "./Card/Card";
+import Loading from "../../elements/Loading/Loading";
 
-import "./style.sass"
+import "./style.sass";
 export default {
+  components: {
+    Card,
+    Loading
+  },
   props: {
     data: {
       type: Array,
@@ -22,52 +34,55 @@ export default {
     search: {
       type: String,
       required: false,
-      dafault: ''
+      dafault: ""
     },
     sort: {
       type: Object,
       required: false,
-      default: {}
+      default: function() {
+        return {};
+      }
     },
     tooltipMessage: {
       type: String,
       required: false
     }
   },
-  components: {
-    Card,
-    Loading
-  },
   computed: {
-    loadingData(){      
-      return this.$store.getters.loadingData
-    },    
-    setDataListWithSort(){  
-      this.data.sort(this.dataSort);
-      return this.searchSort(this.data, this.search)
+    loadingData() {
+      return this.$store.getters.loadingData;
     },
-    getRequestError(){
-      return this.$store.getters.getRequestError
+    setDataListWithSort() {
+      let data = this.data;
+      data.sort(this.dataSort);
+      return this.searchSort(data, this.search);
+    },
+    getRequestError() {
+      return this.$store.getters.getRequestError;
     }
-  }, 
+  },
   methods: {
-      dataSort(a,b){
-        let { type, sort } = this.sort        
-        if (a[type] > b[type]) {
-          return sort === "asc" ? 1 : -1;
-        }
-        if (a[type] == b[type]) return 0;
-        if (a[type] < b[type]) {
-          return sort === "asc" ? -1 : 1;
-        }
-      },
-      searchSort(data, search){
-        return data.filter(item => {        
-          if (item.owner.login.toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) !== -1) {            
-            return item;
-          }
-        })
+    dataSort(a, b) {
+      let { type, sort } = this.sort;
+      if (a[type] > b[type]) {
+        return sort === "asc" ? 1 : -1;
       }
-    } 
-}
+      if (a[type] == b[type]) return 0;
+      if (a[type] < b[type]) {
+        return sort === "asc" ? -1 : 1;
+      }
+    },
+    searchSort(data, search) {
+      return data.filter(item => {
+        if (
+          item.owner.login
+            .toLocaleLowerCase()
+            .indexOf(search.toLocaleLowerCase()) !== -1
+        ) {
+          return item;
+        }
+      });
+    }
+  }
+};
 </script>

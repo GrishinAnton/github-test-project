@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { throwError } from "rxjs";
 
 Vue.use(Vuex);
 
