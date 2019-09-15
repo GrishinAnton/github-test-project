@@ -1,11 +1,10 @@
 <template functional>
-  <div class="tooltip">
-    <slot />
+  <div class="loading">
+    LOADING
   </div>
 </template>
 
 <script>
-import "./style.sass"
 export default {
   
 }

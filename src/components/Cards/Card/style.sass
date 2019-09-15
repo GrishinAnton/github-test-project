@@ -1,0 +1,55 @@
+.card
+    position: relative
+    display: flex
+    padding: 20px
+    margin: var(--card-list-container-margin)
+    border-radius: 5px
+    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.5)
+    background: linear-gradient(#EEEEEE, #FFFFFF)
+
+    &:hover
+        .tooltip
+            display: block
+
+    &__media
+        display: flex
+        flex-shrink: 0
+        width: 100px
+        height: 100px
+
+        img
+            border-radius: 50%
+            margin: auto
+
+    &__content
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+
+        padding-top: 8px
+        padding-bottom: 8px
+        margin-left: 20px
+
+
+    &__name
+        font-size: 22px
+        font-weight: 600
+
+        p
+            word-break: break-all
+
+    &__description
+        font-size: 18px
+        font-weight: 400
+
+    &__information
+        margin-left: auto
+        margin-top: auto
+        padding: 8px
+        
+        font-weight: 600
+        line-height: 16px
+
+        border-radius: 8px
+        background-color: var(--color-blue)
+        color: var(--color-white)
