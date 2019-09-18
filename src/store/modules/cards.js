@@ -11,7 +11,12 @@ export default {
       q: "stars:>=0",
       sort: "stars",
       order: "desc",
-      page: "1"
+      page: 1
+    },
+    pagination: {
+      maxTotalCount: 986,
+      perPageCount: 29,
+      currentPage: 1
     }
   },
   mutations: {
@@ -29,6 +34,9 @@ export default {
     },
     setSortParams(state, payLoad) {
       state.sortParams = Object.assign(state.sortParams, payLoad);
+    },
+    setPagination(state, payLoad) {
+      state.pagination = Object.assign(state.pagination, payLoad);
     }
   },
   actions: {
@@ -63,6 +71,7 @@ export default {
           commit("setData", data.items);
           commit("changeLoadingStatus", false);
           commit("setRequestUrl", requestUrl);
+          commit("setPagination", { currentPage: getSortParams.page });
         }
       } catch (e) {
         commit("changeLoadingStatus", false);
@@ -76,6 +85,7 @@ export default {
     getData: state => state.data,
     getRequestUrl: state => state.requestUrl,
     getRequestError: state => state.requestError,
-    getSortParams: state => state.sortParams
+    getSortParams: state => state.sortParams,
+    getPagination: state => state.pagination
   }
 };
