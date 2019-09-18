@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     loadingData() {
-      return this.$store.getters.loadingData;
+      return this.$store.getters["cards/loadingData"];
     },
     setDataListWithSort() {
       let data = this.data;
@@ -58,7 +58,7 @@ export default {
       return this.searchSort(data, this.search);
     },
     getRequestError() {
-      return this.$store.getters.getRequestError;
+      return this.$store.getters["cards/getRequestError"];
     }
   },
   methods: {

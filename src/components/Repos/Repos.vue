@@ -52,14 +52,14 @@ export default {
   },
   computed: {
     getData() {
-      return this.$store.getters.getData;
+      return this.$store.getters["cards/getData"];
     },
     getTooltipMessage() {
-      return this.$store.getters.getRequestUrl;
+      return this.$store.getters["cards/getRequestUrl"];
     }
   },
   mounted() {
-    this.$store.dispatch("getData");
+    this.$store.dispatch("cards/getData");
   },
   methods: {
     sortChange(type) {

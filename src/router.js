@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Auth from "./components/Auth/Auth";
-import Repos from "./components/Repos/Repos";
+import Auth from "./view/Auth";
+import Repos from "./view/Repos";
 
 Vue.use(Router);
 

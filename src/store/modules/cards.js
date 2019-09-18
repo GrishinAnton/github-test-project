@@ -1,9 +1,5 @@
-import Vue from "vue";
-import Vuex from "vuex";
-
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default {
+  namespaced: true,
   state: {
     data: [],
     loading: true,
@@ -16,18 +12,6 @@ export default new Vuex.Store({
     },
     setData(state, payLoad) {
       state.data = payLoad;
-    },
-    sortData(state, { sort, type }) {
-      function dataSort(a, b) {
-        if (a[type] > b[type]) {
-          return sort === "asc" ? 1 : -1;
-        }
-        if (a[type] == b[type]) return 0;
-        if (a[type] < b[type]) {
-          return sort === "asc" ? -1 : 1;
-        }
-      }
-      state.data.sort(dataSort);
     },
     setRequestUrl(state, payLoad) {
       state.requestUrl = payLoad;
@@ -64,4 +48,4 @@ export default new Vuex.Store({
     getRequestUrl: state => state.requestUrl,
     getRequestError: state => state.requestError
   }
-});
+};
