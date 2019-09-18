@@ -6,7 +6,8 @@
     <div class="cards-container">
       <div class="search cards-container_search">
         <input
-          v-model="search"
+          :value="search"
+          @input="sortSearch"
           class="input"
           type="search"
           placeholder="Поиск по имени"
@@ -23,8 +24,6 @@
 
       <CardList
         :data="getData"
-        :search="search"
-        :sort="sort"
         :tooltip-message="getTooltipMessage"
       />
     </div>
@@ -62,9 +61,15 @@ export default {
     this.$store.dispatch("cards/getData");
   },
   methods: {
-    sortChange(type) {
-      this.sort = type;
+    sortChange({ sort, order }) {      
+      this.$store.dispatch("cards/getData", { sort: sort, order: order  }) 
+    },
+    sortSearch(e){
+      let value = e.target.value
+      this.search = value
+      this.$store.dispatch("cards/getData", { q: value })      
     }
+
   }
 };
 </script>

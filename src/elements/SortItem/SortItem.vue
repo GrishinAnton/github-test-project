@@ -26,7 +26,7 @@ export default {
   methods: {
     change() {
       this.sortType = this.sortType === "desc" ? "asc" : "desc";
-      this.$emit("click", { sort: this.sortType, type: this.type });
+      this.$emit("click", { sort: this.type, order: this.sortType });
     }
   }
 };

@@ -1,6 +1,6 @@
 const Api = {
-  getData: params => {
-    return axios.get(params);
+  getData: (url, params) => {
+    return axios.get(url, { params: params });
   }
 };
 
