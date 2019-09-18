@@ -13,11 +13,7 @@ export default {
       order: "desc",
       page: 1
     },
-    pagination: {
-      maxTotalCount: null,
-      perPageCount: null,
-      currentPage: null
-    }
+    pagination: {}
   },
   mutations: {
     changeLoadingStatus(state, payLoad) {
