@@ -79,7 +79,7 @@ export default {
     sortSearch(e){
       let value = e.target.value
       this.search = value
-      this.$store.dispatch("cards/getData", { q: value })      
+      this.$store.dispatch("cards/getData", { q: value, page: 1 })      
     },
     changePagination(count){
       this.$store.dispatch("cards/getData", { page: count  }) 

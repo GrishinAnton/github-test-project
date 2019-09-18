@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     paginationCount(){
-      return this.information.maxTotalCount / this.information.perPageCount
+      return Math.trunc(this.information.maxTotalCount / this.information.perPageCount)
     },
     disablePrev(){
       return this.information.currentPage === 1

@@ -14,9 +14,9 @@ export default {
       page: 1
     },
     pagination: {
-      maxTotalCount: 986,
-      perPageCount: 29,
-      currentPage: 1
+      maxTotalCount: null,
+      perPageCount: null,
+      currentPage: null
     }
   },
   mutations: {
@@ -69,7 +69,11 @@ export default {
           commit("setData", data.items);
           commit("changeLoadingStatus", false);
           commit("setRequestUrl", request.responseURL);
-          commit("setPagination", { currentPage: getSortParams.page });
+          commit("setPagination", {
+            currentPage: getSortParams.page,
+            maxTotalCount: data.total_count > 986 ? 986 : data.total_count,
+            perPageCount: data.items.length <= 30 ? data.items.length : 30
+          });
         }
       } catch (e) {
         commit("changeLoadingStatus", false);
