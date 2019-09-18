@@ -1,3 +1,5 @@
+import Api from "../../utils/api";
+
 export default {
   namespaced: true,
   state: {
@@ -29,7 +31,7 @@ export default {
       commit("setRequestError", false);
 
       try {
-        let { data, status } = await axios.get(url);
+        let { data, status } = await Api.getData(url);
         if (status === 200) {
           commit("setData", data.items);
           commit("changeLoadingStatus", false);
