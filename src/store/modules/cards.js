@@ -47,9 +47,6 @@ export default {
       await commit("setSortParams", sortParams);
       let getSortParams = getters["getSortParams"];
 
-      //TODO переделать формирование урла для tooltip
-      const requestUrl = `${axios.defaults.baseURL}${url}`;
-
       commit("changeLoadingStatus", true);
       commit("setRequestError", false);
 
@@ -66,11 +63,12 @@ export default {
       };
 
       try {
-        let { data, status } = await Api.getData(url, params);
+        let { data, status, request } = await Api.getData(url, params);
+
         if (status === 200) {
           commit("setData", data.items);
           commit("changeLoadingStatus", false);
-          commit("setRequestUrl", requestUrl);
+          commit("setRequestUrl", request.responseURL);
           commit("setPagination", { currentPage: getSortParams.page });
         }
       } catch (e) {
